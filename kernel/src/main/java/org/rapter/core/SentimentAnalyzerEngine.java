@@ -2,9 +2,10 @@ package org.rapter.core;
 
 
 import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
+
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.rnn.RNNCoreAnnotations;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
@@ -16,21 +17,27 @@ import java.util.Properties;
  * Project : sentiment-engine
  */
 public class SentimentAnalyzerEngine {
+    StanfordCoreNLP stanfordCoreNLP;
 
-    public ResultUnit processSentiment(String sentiment, Properties properties){
-//         Properties props = new Properties();
-//         props.put("annotators", "tokenize, ssplit, pos, lemma, ner, depparse");
-//         props.put("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz");
-//         props.put("ner.applyNumericClassifiers", "false");
-         StanfordCoreNLP stanfordCoreNLP = new StanfordCoreNLP(properties);
+    public void init (){
+         Properties props = new Properties();
+         props.put("annotators", "tokenize, ssplit, pos, lemma, ner, depparse");
+         props.put("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz");
+         props.put("ner.applyNumericClassifiers", "false");
+        //Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+        stanfordCoreNLP = new StanfordCoreNLP(props);
+    }
+
+    public ResultUnit processSentiment(String sentiment, Properties properties) {
         int sentimentLevel = 0;
-        if(sentiment != null && sentiment.length() > 0){
+        if (sentiment != null && sentiment.length() > 0) {
             int longest = 0;
             Annotation annotation = stanfordCoreNLP.process(sentiment);
             for (CoreMap sentence : annotation
                     .get(CoreAnnotations.SentencesAnnotation.class)) {
                 Tree tree = sentence
-                        .get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+                        .get(SentimentCoreAnnotations.AnnotatedTree.class);
                 int value = RNNCoreAnnotations.getPredictedClass(tree);
                 String partText = sentence.toString();
                 if (partText.length() > longest) {
@@ -39,9 +46,9 @@ public class SentimentAnalyzerEngine {
                 }
             }
         }
-        if (sentimentLevel == 2 || sentimentLevel > 4 || sentimentLevel < 0) {
-            return null;
-        }
+//        if (sentimentLevel == 2 || sentimentLevel > 4 || sentimentLevel < 0) {
+//            return null;
+//        }
         return new ResultUnit(sentiment,
                 getSentimentLevelAsString(sentimentLevel));
 

@@ -55,7 +55,7 @@
     </dependencyManagement>
 
     <properties>
-        <edu.stanford.nlp.stanford.corenlp.version>3.5.2</edu.stanford.nlp.stanford.corenlp.version>
+        <edu.stanford.nlp.stanford.corenlp.version>3.3.0</edu.stanford.nlp.stanford.corenlp.version>
         <com.github.javadev>1.5</com.github.javadev>
         <org.twitter4j.version.range>[3.0,)</org.twitter4j.version.range>
         <mysql.connector.java.version>5.1.37</mysql.connector.java.version>
