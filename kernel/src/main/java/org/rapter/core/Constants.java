@@ -5,4 +5,12 @@ package org.rapter.core;
  * Project : sentiment-engine
  */
 public final class Constants {
+    public static final String KERNEL_DIR = "kernel.directory";
+
+    /**
+     * Remove default constructor and make it not available to initialize.
+     */
+    private Constants() {
+        throw new AssertionError("Trying to a instantiate a constant class");
+    }
 }
