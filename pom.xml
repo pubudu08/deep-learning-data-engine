@@ -12,22 +12,29 @@
         <module>kernel</module>
     </modules>
 
-
-    <dependencies>
-         <dependency>
-             <groupId>edu.stanford.nlp</groupId>
-             <artifactId>stanford-corenlp</artifactId>
-             <version>${edu.stanford.nlp.stanford.corenlp.version}</version>
-         </dependency>
-         <dependency>
-             <groupId>edu.stanford.nlp</groupId>
-             <artifactId>stanford-corenlp</artifactId>
-             <version>${edu.stanford.nlp.stanford.corenlp.version}</version>
-             <classifier>models</classifier>
-         </dependency>
-     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>edu.stanford.nlp</groupId>
+                <artifactId>stanford-corenlp</artifactId>
+                <version>${edu.stanford.nlp.stanford.corenlp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>edu.stanford.nlp</groupId>
+                <artifactId>stanford-corenlp</artifactId>
+                <version>${edu.stanford.nlp.stanford.corenlp.version}</version>
+                <classifier>models</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javadev</groupId>
+                <artifactId>underscore-lodash</artifactId>
+                <version>${com.github.javadev}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <properties>
         <edu.stanford.nlp.stanford.corenlp.version>3.5.2</edu.stanford.nlp.stanford.corenlp.version>
+        <com.github.javadev>1.5</com.github.javadev>
     </properties>
 </project>
