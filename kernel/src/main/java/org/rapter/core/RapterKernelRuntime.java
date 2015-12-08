@@ -24,13 +24,19 @@ public class RapterKernelRuntime implements KernelRuntime {
         Properties properties = kernelConfiguration.getProperties();
         TwitterSearchData twitterSearchData = new TwitterSearchData(properties);
         List<Status> relatedTweets =  twitterSearchData.searchTweetsByKeyword("Manchester United");
+        SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
 
         for (Status status : relatedTweets){
+            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
+            System.out.println(resultUnit.toString());
+        }
+
+/*        for (Status status : relatedTweets){
             System.out.println(status.getText());
             System.out.println("@"+status.getUser().getScreenName());
             System.out.println(status.getCreatedAt());
             System.out.println("");
-        }
+        }*/
 
 
     }

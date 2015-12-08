@@ -6,6 +6,6 @@ package org.rapter.core;
  */
 public class TestSentimentAnalyser {
     public static void main(String[] args) {
-        SentimentAnalyzer sentimentAnalyzer = new SentimentAnalyzer();
+        SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
     }
 }

@@ -18,6 +18,7 @@
                 <groupId>edu.stanford.nlp</groupId>
                 <artifactId>stanford-corenlp</artifactId>
                 <version>${edu.stanford.nlp.stanford.corenlp.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>edu.stanford.nlp</groupId>
