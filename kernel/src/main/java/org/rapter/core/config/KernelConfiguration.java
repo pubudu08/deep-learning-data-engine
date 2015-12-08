@@ -1,5 +1,7 @@
 package org.rapter.core.config;
 
+import org.rapter.core.utils.Utils;
+
 import java.util.Properties;
 
 /**
@@ -10,37 +12,23 @@ public class KernelConfiguration {
     private String id = "sentiment-kernel";
     private String name = "Rapter-Extractor";
     private String version = "1.0.0";
-    private Properties properties = new Properties();
+    private Properties properties = null;
+    private Utils utils = new Utils();
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
     public Properties getProperties() {
+        this.properties = utils.init();
         return properties;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
     }
 }
