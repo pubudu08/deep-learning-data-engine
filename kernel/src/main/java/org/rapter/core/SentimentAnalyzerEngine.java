@@ -10,6 +10,7 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -17,7 +18,10 @@ import java.util.Properties;
  * Project : sentiment-engine
  */
 public class SentimentAnalyzerEngine {
-    StanfordCoreNLP stanfordCoreNLP;
+    private ArrayList<String> positiveSentiments = new ArrayList<String>();
+    private ArrayList<String> negativeSentiments = new ArrayList<String>();
+    private ArrayList<String> neutralSentiments = new ArrayList<String>();
+    private StanfordCoreNLP stanfordCoreNLP;
 
     public void init (){
          Properties props = new Properties();
@@ -46,30 +50,48 @@ public class SentimentAnalyzerEngine {
                 }
             }
         }
-//        if (sentimentLevel == 2 || sentimentLevel > 4 || sentimentLevel < 0) {
-//            return null;
-//        }
         return new ResultUnit(sentiment,
-                getSentimentLevelAsString(sentimentLevel));
+                getSentimentLevelAsString(sentimentLevel,sentiment));
 
     }
 
-    private String getSentimentLevelAsString(int sentiment) {
-        switch (sentiment) {
+    private String getSentimentLevelAsString(int sentimentValue, String sentiment) {
+        switch (sentimentValue) {
             case 0:
+                negativeSentiments.add(sentiment);
                 return "very negative";
             case 1:
+                negativeSentiments.add(sentiment);
                 return "negative";
             case 2:
+                neutralSentiments.add(sentiment);
                 return "neutral";
             case 3:
+                positiveSentiments.add(sentiment);
                 return "positive";
             case 4:
+                positiveSentiments.add(sentiment);
                 return "very positive";
             default:
                 return "Unclassified!";
         }
     }
 
+    public int getPositiveSentimentsCount() {
+        return positiveSentiments.size();
+    }
 
+    public int getNegativeSentimentsCount() {
+        return negativeSentiments.size();
+    }
+    public int getNeutralSentimentsCount() {
+        return neutralSentiments.size();
+    }
+
+    public void cleanData(){
+        positiveSentiments.clear();
+        negativeSentiments.clear();
+        neutralSentiments.clear();
+        System.out.println(" All the processed data has been wiped out! ");
+    }
 }

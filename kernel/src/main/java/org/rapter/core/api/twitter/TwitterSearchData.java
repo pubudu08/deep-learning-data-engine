@@ -1,5 +1,6 @@
 package org.rapter.core.api.twitter;
 
+import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -19,30 +20,23 @@ import java.util.Properties;
  */
 public class TwitterSearchData {
 
-    private Properties properties = null;
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
+    private Twitter twitter;
 
     public TwitterSearchData( Properties properties) {
-        this.properties = properties;
-    }
-
-    public List<Status> searchTweetsByKeyword(String keyword){
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.setDebugEnabled(true).setOAuthConsumerKey(properties.getProperty("TWITTER_OAUTH_CONSUMER_KEY")).
                 setOAuthConsumerSecret(properties.getProperty("TWITTER_OAUTH_CONSUMER_SECRET")).
-                        setOAuthAccessToken(properties.getProperty("TWITTER_OAUTH_ACCESS_TOKEN")).
-                        setOAuthAccessTokenSecret(properties.getProperty("TWITTER_OAUTH_ACCESS_TOKEN_SECRET"));
+                setOAuthAccessToken(properties.getProperty("TWITTER_OAUTH_ACCESS_TOKEN")).
+                setOAuthAccessTokenSecret(properties.getProperty("TWITTER_OAUTH_ACCESS_TOKEN_SECRET"));
         TwitterFactory twitterFactory = new TwitterFactory(configurationBuilder.build());
-        Twitter twitter = twitterFactory.getInstance();
+        twitter = twitterFactory.getInstance();
+    }
+
+    public List<Status> searchTweetsByKeyword(String keyword){
+
+
         Query query = new Query(keyword + " -filter:retweets -filter:links -filter:replies -filter:images");
-        query.setCount(20);
+        query.setCount(100);
         query.setLocale("en");
         query.setLang("en");
         try {
@@ -53,6 +47,17 @@ public class TwitterSearchData {
             e.printStackTrace();
         }
         return Collections.emptyList();
+    }
+
+    public List<Status> fetchMentions(String twitterHandler, int threshold){
+        Paging paging = new Paging(1, threshold);
+        List<Status> tweets = null;
+        try {
+            tweets = twitter.getUserTimeline(twitterHandler,paging);
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+        return tweets;
     }
 
 }

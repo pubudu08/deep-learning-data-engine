@@ -19,17 +19,38 @@ public class RapterKernelRuntime implements KernelRuntime {
     }
 
     public static void main(String[] args) {
+        String twitterHandler = "azi_reddevil";
         RapterKernelRuntime rapterKernelRuntime = new RapterKernelRuntime();
         KernelConfiguration kernelConfiguration = rapterKernelRuntime.getConfiguration();
         Properties properties = kernelConfiguration.getProperties();
         TwitterSearchData twitterSearchData = new TwitterSearchData(properties);
         List<Status> relatedTweets =  twitterSearchData.searchTweetsByKeyword("SriLanka");
+        List<Status> userTimeline =  twitterSearchData.fetchMentions(twitterHandler, 709);
+
         SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
         sentimentAnalyzer.init();
 
-        for (Status status : relatedTweets){
+/*        for (Status status : relatedTweets){
             ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
-            System.out.println(resultUnit.toString());
+            //System.out.println(resultUnit.toString());
         }
+
+        System.out.println("\nTotal "+ relatedTweets.size()+" sentiments were analysed\n" +
+                "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
+                 sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
+                +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
+
+        sentimentAnalyzer.cleanData();
+        */
+        for (Status status : userTimeline){
+            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
+            //System.out.println(resultUnit.toString());
+        }
+        System.out.println("@"+twitterHandler+"'s twitter analysis!");
+        System.out.println("\nTotal "+ userTimeline.size()+" sentiments were analysed\n" +
+                "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
+                sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
+                +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
+
     }
 }

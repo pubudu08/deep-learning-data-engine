@@ -23,6 +23,6 @@ public class ResultUnit {
 
     @Override
     public String toString() {
-        return "ResultObject [sentiment=" + getSentiment() + ", sentimentLevel= " + getSentimentLevel() + "]";
+        return "ResultObject [sentiment= " + getSentiment() + ", sentimentLevel= " + getSentimentLevel() + "]";
     }
 }
