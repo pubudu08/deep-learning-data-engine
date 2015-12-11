@@ -19,7 +19,7 @@ public class RapterKernelRuntime implements KernelRuntime {
     }
 
     public static void main(String[] args) {
-        String twitterHandler = "azi_reddevil";
+        String twitterHandler = "loNE_wOLf_90";
         RapterKernelRuntime rapterKernelRuntime = new RapterKernelRuntime();
         KernelConfiguration kernelConfiguration = rapterKernelRuntime.getConfiguration();
         Properties properties = kernelConfiguration.getProperties();

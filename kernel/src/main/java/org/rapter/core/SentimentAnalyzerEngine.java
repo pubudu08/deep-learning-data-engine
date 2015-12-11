@@ -2,6 +2,7 @@ package org.rapter.core;
 
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
@@ -47,6 +48,14 @@ public class SentimentAnalyzerEngine {
                 if (partText.length() > longest) {
                     sentimentLevel = value;
                     longest = partText.length();
+                }
+                for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)){
+                    // this is the text of the token
+                    String word = token.get(CoreAnnotations.TextAnnotation.class);
+                    // this is the POS tag of the token
+                    String position = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                    //This is the NER label of the token
+                    String ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
                 }
             }
         }

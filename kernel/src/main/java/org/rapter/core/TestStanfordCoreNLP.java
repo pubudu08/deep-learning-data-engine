@@ -60,6 +60,7 @@ public class TestStanfordCoreNLP {
                 String position = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
                 //This is the NER label of the token
                 String ner = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                System.out.println(ner);
             }
 
             //This is the parse tree of the current sentence
