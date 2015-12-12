@@ -43,7 +43,7 @@ public class RapterKernelRuntime implements KernelRuntime {
         sentimentAnalyzer.cleanData();
         */
         for (Status status : userTimeline){
-            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
+            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText());
             //System.out.println(resultUnit.toString());
         }
         System.out.println("@"+twitterHandler+"'s twitter analysis!");

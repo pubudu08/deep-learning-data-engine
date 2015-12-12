@@ -51,6 +51,22 @@
                 <artifactId>log4j-core</artifactId>
                 <version>${log4j.core.version}</version>
             </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${javax.servlet.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>fi.foyt</groupId>
+                <artifactId>foursquare-api</artifactId>
+                <version>${foursquare.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fi.foyt</groupId>
+                <artifactId>foursquare-api-gae</artifactId>
+                <version>${foursquare.api.gae.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -61,6 +77,11 @@
         <mysql.connector.java.version>5.1.37</mysql.connector.java.version>
         <log4j.core.version>2.4.1</log4j.core.version>
         <log4j.api.version>2.4.1</log4j.api.version>
+        <javax.servlet.api.version>2.5</javax.servlet.api.version>
+        <foursquare.api.version>1.0.3-SNAPSHOT</foursquare.api.version>
+        <foursquare.api.gae.version>1.0.3-SNAPSHOT</foursquare.api.gae.version>
 
     </properties>
+
+
 </project>

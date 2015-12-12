@@ -34,7 +34,7 @@ public class SentimentAnalyzerEngine {
         stanfordCoreNLP = new StanfordCoreNLP(props);
     }
 
-    public ResultUnit processSentiment(String sentiment, Properties properties) {
+    public ResultUnit processSentiment(String sentiment) {
         int sentimentLevel = 0;
         if (sentiment != null && sentiment.length() > 0) {
             int longest = 0;

@@ -29,5 +29,17 @@
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fi.foyt</groupId>
+            <artifactId>foursquare-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fi.foyt</groupId>
+            <artifactId>foursquare-api-gae</artifactId>
+        </dependency>
     </dependencies>
 </project>
