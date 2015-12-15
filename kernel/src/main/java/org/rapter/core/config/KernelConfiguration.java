@@ -28,7 +28,7 @@ public class KernelConfiguration {
     }
 
     public Properties getProperties() {
-        this.properties = utils.init();
+        this.properties = utils.initProperties();
         return properties;
     }
 }

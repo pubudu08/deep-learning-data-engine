@@ -24,14 +24,14 @@ public class SentimentAnalyzerEngine {
     private ArrayList<String> neutralSentiments = new ArrayList<String>();
     private StanfordCoreNLP stanfordCoreNLP;
 
-    public void init (){
-         Properties props = new Properties();
-         props.put("annotators", "tokenize, ssplit, pos, lemma, ner, depparse");
-         props.put("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz");
-         props.put("ner.applyNumericClassifiers", "false");
-        //Properties props = new Properties();
-        props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
-        stanfordCoreNLP = new StanfordCoreNLP(props);
+    public void init (Properties properties){
+//         Properties props = new Properties();
+//         props.put("annotators", "tokenize, ssplit, pos, lemma,parse, ner, sentiment");
+//         props.put("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz");
+//         props.put("ner.applyNumericClassifiers", "false");
+//        Properties props = new Properties();
+//        props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+        stanfordCoreNLP = new StanfordCoreNLP(properties);
     }
 
     public ResultUnit processSentiment(String sentiment) {

@@ -28,7 +28,7 @@ public class RapterKernelRuntime implements KernelRuntime {
         List<Status> userTimeline =  twitterSearchData.fetchMentions(twitterHandler, 709);
 
         SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
-        sentimentAnalyzer.init();
+        sentimentAnalyzer.init(properties);
 
 /*        for (Status status : relatedTweets){
             ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
@@ -42,15 +42,16 @@ public class RapterKernelRuntime implements KernelRuntime {
 
         sentimentAnalyzer.cleanData();
         */
-        for (Status status : userTimeline){
-            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText());
-            //System.out.println(resultUnit.toString());
-        }
-        System.out.println("@"+twitterHandler+"'s twitter analysis!");
-        System.out.println("\nTotal "+ userTimeline.size()+" sentiments were analysed\n" +
-                "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
-                sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
-                +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
-
+//        for (Status status : userTimeline){
+//            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText());
+//            //System.out.println(resultUnit.toString());
+//        }
+//        System.out.println("@"+twitterHandler+"'s twitter analysis!");
+//        System.out.println("\nTotal "+ userTimeline.size()+" sentiments were analysed\n" +
+//                "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
+//                sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
+//                +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
+        ResultUnit resultUnit = sentimentAnalyzer.processSentiment("XYZ is hardly interesting");
+        System.out.println(resultUnit.toString());
     }
 }

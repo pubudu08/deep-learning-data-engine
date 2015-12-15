@@ -12,11 +12,11 @@ import java.util.Properties;
  * Project : sentiment-engine
  */
 public class Utils {
-    private Properties properties = new Properties();
-    private InputStream inputStream = null;
-    private List<String> propertyList = new ArrayList<String>();
+    private static Properties properties = new Properties();
+    private static InputStream inputStream = null;
+    private static List<String> propertyList = new ArrayList<String>();
 
-    public Properties init() {
+    public static Properties initProperties() {
         // separate all the resource files and load individually
         propertyList.add("api_config.properties");
         propertyList.add("edu/stanford/nlp/pipeline/StanfordCoreNLP.properties");
