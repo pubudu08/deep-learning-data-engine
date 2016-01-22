@@ -2,6 +2,7 @@ package org.rapter.core;
 
 import org.rapter.core.api.twitter.TwitterSearchData;
 import org.rapter.core.config.KernelConfiguration;
+import org.rapter.core.sentiment.TestVaderSentiment;
 import twitter4j.Status;
 
 import java.util.List;
@@ -19,29 +20,34 @@ public class RapterKernelRuntime implements KernelRuntime {
     }
 
     public static void main(String[] args) {
-        String twitterHandler = "loNE_wOLf_90";
+        String twitterHandler = "GeekInAction";
         RapterKernelRuntime rapterKernelRuntime = new RapterKernelRuntime();
         KernelConfiguration kernelConfiguration = rapterKernelRuntime.getConfiguration();
         Properties properties = kernelConfiguration.getProperties();
         TwitterSearchData twitterSearchData = new TwitterSearchData(properties);
-        List<Status> relatedTweets =  twitterSearchData.searchTweetsByKeyword("SriLanka");
-        List<Status> userTimeline =  twitterSearchData.fetchMentions(twitterHandler, 709);
+        List<Status> relatedTweets =  twitterSearchData.searchTweetsByKeyword("CEPA");
+        List<Status> userTimeline =  twitterSearchData.fetchMentions(twitterHandler, 20);
 
-        SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
-        sentimentAnalyzer.init(properties);
+//        SentimentAnalyzerEngine sentimentAnalyzer = new SentimentAnalyzerEngine();
+//        sentimentAnalyzer.init(properties);
 
-/*        for (Status status : relatedTweets){
-            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText(), properties);
-            //System.out.println(resultUnit.toString());
+
+        String input;
+        for (Status status : userTimeline){
+            input = "{\n"
+                    + "  \"sentence\": \""+status.getText()+"\"\n"
+                    + "  \n"
+                    + "}";
+            System.out.println(TestVaderSentiment.run(properties,input));
+            System.out.println();
         }
 
-        System.out.println("\nTotal "+ relatedTweets.size()+" sentiments were analysed\n" +
+/*        System.out.println("\nTotal "+ relatedTweets.size()+" sentiments were analysed\n" +
                 "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
                  sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
                 +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
 
-        sentimentAnalyzer.cleanData();
-        */
+        sentimentAnalyzer.cleanData();*/
 //        for (Status status : userTimeline){
 //            ResultUnit resultUnit = sentimentAnalyzer.processSentiment(status.getText());
 //            //System.out.println(resultUnit.toString());
@@ -51,7 +57,7 @@ public class RapterKernelRuntime implements KernelRuntime {
 //                "There were "+sentimentAnalyzer.getPositiveSentimentsCount() +" Positive Sentiments\n, " +
 //                sentimentAnalyzer.getNeutralSentimentsCount() +" Neutral Sentiments\n, And  " +
 //                +sentimentAnalyzer.getNegativeSentimentsCount() +" Negative Sentiments");
-        ResultUnit resultUnit = sentimentAnalyzer.processSentiment("XYZ is hardly interesting");
-        System.out.println(resultUnit.toString());
+//        ResultUnit resultUnit = sentimentAnalyzer.processSentiment("XYZ is hardly interesting");
+//        System.out.println(resultUnit.toString());
     }
 }

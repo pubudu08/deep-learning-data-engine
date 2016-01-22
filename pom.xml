@@ -67,6 +67,16 @@
                 <artifactId>foursquare-api-gae</artifactId>
                 <version>${foursquare.api.gae.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.algorithmia</groupId>
+                <artifactId>algorithmia-client</artifactId>
+                <version>${com.algorithmia.version.range}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${com.fasterxml.jackson.core.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -80,7 +90,8 @@
         <javax.servlet.api.version>2.5</javax.servlet.api.version>
         <foursquare.api.version>1.0.3-SNAPSHOT</foursquare.api.version>
         <foursquare.api.gae.version>1.0.3-SNAPSHOT</foursquare.api.gae.version>
-
+        <com.algorithmia.version.range>[,1.1.0)</com.algorithmia.version.range>
+        <com.fasterxml.jackson.core.version>2.6.3</com.fasterxml.jackson.core.version>
     </properties>
 
 

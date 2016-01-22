@@ -36,7 +36,7 @@ public class TwitterSearchData {
 
 
         Query query = new Query(keyword + " -filter:retweets -filter:links -filter:replies -filter:images");
-        query.setCount(100);
+        query.setCount(20);
         query.setLocale("en");
         query.setLang("en");
         try {
